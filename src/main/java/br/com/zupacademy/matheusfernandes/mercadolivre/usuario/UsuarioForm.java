@@ -1,6 +1,5 @@
 package br.com.zupacademy.matheusfernandes.mercadolivre.usuario;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 import javax.persistence.EntityManager;
@@ -9,11 +8,11 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import br.com.zupacademy.matheusfernandes.mercadolivre.UniqueValue;
 
 public class UsuarioForm {
 
-	@NotBlank @Email 
+	@NotBlank @Email 	@UniqueValue(domainClass = Usuario.class, fieldName = "login")
 	private String login;
 	@NotBlank @Size(min = 6)
 	private String senha;
@@ -21,7 +20,7 @@ public class UsuarioForm {
 	private LocalDateTime instante = LocalDateTime.now();
 	
 	public String getLogin() {
-		return login;
+		return this.login;
 	}
 	public String getSenha() {
 		return senha;

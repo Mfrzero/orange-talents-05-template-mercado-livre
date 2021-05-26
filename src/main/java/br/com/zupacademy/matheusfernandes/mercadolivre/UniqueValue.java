@@ -10,10 +10,8 @@ import java.lang.annotation.Target;
 import javax.validation.Constraint;
 import javax.validation.Payload;
 
-import org.hibernate.validator.constraints.UniqueElements;
-
-@UniqueElements
 @Documented
+//@Constraint(validatedBy = {UniqueValueValidator.class})
 @Constraint(validatedBy = {UniqueValueValidator.class})
 @Retention(RUNTIME)
 @Target(FIELD)

@@ -20,7 +20,7 @@ public class Usuario {
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	@NotBlank @Email @UniqueValue(domainClass = Usuario.class, fieldName = "login")
+	@NotBlank @Email 
 	private String login;
 	@NotBlank @Size(min = 6)
 	private String senha;
@@ -51,8 +51,5 @@ public class Usuario {
 	public LocalDateTime getInstante() {
 		return instante;
 	}
-	
-	
-	
 	
 }
