@@ -11,13 +11,12 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 @Documented
-//@Constraint(validatedBy = {UniqueValueValidator.class})
 @Constraint(validatedBy = {UniqueValueValidator.class})
 @Retention(RUNTIME)
 @Target(FIELD)
 public @interface UniqueValue {
 
-	String message() default "Campo não pode ser vazio, repetido ou nulo";
+	String message() default "Dados inválidos ou já existentes";
 	
 	Class<?>[] groups() default{};
 

@@ -29,7 +29,7 @@ public class ProibeLoginDuplicadoValidator implements Validator{
 		Optional<Usuario> possivelLogin = usuarioRepository.findByLogin(form.getLogin());
 		
 		if (possivelLogin.isPresent()) {
-			errors.rejectValue("Login ", null, "Já existe um login com o mesmo email "+ form.getLogin());
+			errors.rejectValue("Login", null, "Já existe um login com o mesmo email "+ form.getLogin());
 		}
 	}
 

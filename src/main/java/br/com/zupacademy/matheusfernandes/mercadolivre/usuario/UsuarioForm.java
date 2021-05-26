@@ -12,7 +12,7 @@ import br.com.zupacademy.matheusfernandes.mercadolivre.UniqueValue;
 
 public class UsuarioForm {
 
-	@NotBlank @Email 	@UniqueValue(domainClass = Usuario.class, fieldName = "login")
+	@NotBlank @Email @UniqueValue(domainClass = Usuario.class, fieldName = "login")
 	private String login;
 	@NotBlank @Size(min = 6)
 	private String senha;
