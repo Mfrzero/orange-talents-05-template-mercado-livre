@@ -26,10 +26,10 @@ public class ProibeLoginDuplicadoValidator implements Validator{
 		}
 		
 		UsuarioForm form = (UsuarioForm) target;
-		Optional<Usuario> possivelLogin = usuarioRepository.findByLogin(form.getLogin());
+		Optional<Usuario> possivelLogin = usuarioRepository.findByEmail(form.getEmail());
 		
 		if (possivelLogin.isPresent()) {
-			errors.rejectValue("Login", null, "Já existe um login com o mesmo email "+ form.getLogin());
+			errors.rejectValue("Email", null, "Já existe um login com o mesmo email "+ form.getEmail());
 		}
 	}
 

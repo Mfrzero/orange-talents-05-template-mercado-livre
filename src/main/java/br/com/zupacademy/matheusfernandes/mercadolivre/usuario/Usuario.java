@@ -6,33 +6,31 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-import br.com.zupacademy.matheusfernandes.mercadolivre.UniqueValue;
-
 @Entity
-public class Usuario {
+public class Usuario 
+{
 
 	@Id @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	@NotBlank @Email 
-	private String login;
+	private String email;
 	@NotBlank @Size(min = 6)
 	private String senha;
 	@NotNull
 	private LocalDateTime instante = LocalDateTime.now();
-	
+
 	public Usuario() {
 	}
 
-	public Usuario(@NotBlank @Email String login, @NotBlank @Size(min = 6) String senha, @NotNull LocalDateTime instante) {
-		this.login = login;
-		this.senha = new BCryptPasswordEncoder().encode(senha);
+	public Usuario(@NotBlank @Email String email, @Valid @NotBlank SenhaLimpa senhaLimpa, @NotNull LocalDateTime instante) {
+		this.email = email;
+		this.senha = senhaLimpa.hash();
 		this.instante = instante;
 	}
 	
@@ -40,8 +38,8 @@ public class Usuario {
 		return id;
 	}
 
-	public String getLogin() {
-		return login;
+	public String getEmail() {
+		return email;
 	}
 
 	public String getSenha() {
@@ -51,5 +49,11 @@ public class Usuario {
 	public LocalDateTime getInstante() {
 		return instante;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", email=" + email + ", senha=" + senha + ", instante=" + instante + "]";
+	}
+	
 	
 }

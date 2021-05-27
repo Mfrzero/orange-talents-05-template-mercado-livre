@@ -18,9 +18,9 @@ public class UniqueValueValidator implements ConstraintValidator<UniqueValue, St
 	public boolean isValid(String value, ConstraintValidatorContext context) {
 		Optional<?> instance;
 		if (value.contains("@")) {
-			instance = usuarioRepository.findByLogin(value);
+			instance = usuarioRepository.findByEmail(value);
 		} 
-		instance = usuarioRepository.findByLogin(value);
+		instance = usuarioRepository.findByEmail(value);
 		if (instance.isEmpty()) {
 			return true;
 		}

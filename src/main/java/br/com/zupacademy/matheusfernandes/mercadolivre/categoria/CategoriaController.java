@@ -40,15 +40,22 @@ public class CategoriaController {
 		return (List<Categoria>) categoria;
 	}
 	
-	@PostMapping("/cadastroCategoria")
+//	@PostMapping("/cadastroCategoria")
+//	@Transactional
+//	public ResponseEntity<CategoriaForm> criaCategoria(@RequestBody @Valid CategoriaForm form){
+//		if (!form.getNome().isBlank()) {
+//			Categoria categoria = form.converter(manager);
+//			manager.persist(categoria);
+//			return ResponseEntity.ok(form);
+//		}
+//		return ResponseEntity.badRequest().build();
+//	}
+	@PostMapping("/api/cadastraCategoria")
 	@Transactional
-	public ResponseEntity<CategoriaForm> criaCategoria(@RequestBody @Valid CategoriaForm form){
-		if (!form.getNome().isBlank()) {
+	public String criaCategoria(@RequestBody @Valid CategoriaForm form){
 			Categoria categoria = form.converter(manager);
 			manager.persist(categoria);
-			return ResponseEntity.ok().build();
-		}
-		return ResponseEntity.badRequest().build();
+			return categoria.toString();
 	}
 	
 }

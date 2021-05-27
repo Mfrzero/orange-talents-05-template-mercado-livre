@@ -40,10 +40,10 @@ public class UsuarioController {
 		
 	}
 
-	@PostMapping("/cadastraUsuario")
+	@PostMapping("/api/auth/cadastraUsuario")
 	@Transactional
 	public ResponseEntity<UsuarioForm> criar(@RequestBody @Valid UsuarioForm form){
-		if(form.getLogin().isBlank() || form.getSenha().isBlank()) {
+		if(form.getEmail().isBlank() || form.getSenha().isBlank()) {
 			return ResponseEntity.badRequest().build();
 		}
 		Usuario usuario = form.converter(manager);
@@ -51,4 +51,5 @@ public class UsuarioController {
 		return ResponseEntity.ok().build();
 		
 	}
+
 }

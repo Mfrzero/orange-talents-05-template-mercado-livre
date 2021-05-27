@@ -8,19 +8,21 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+
 import br.com.zupacademy.matheusfernandes.mercadolivre.UniqueValue;
 
 public class UsuarioForm {
 
-	@NotBlank @Email @UniqueValue(domainClass = Usuario.class, fieldName = "login")
-	private String login;
+	@NotBlank @Email
+	private String email;
 	@NotBlank @Size(min = 6)
 	private String senha;
 	@NotNull
 	private LocalDateTime instante = LocalDateTime.now();
 	
-	public String getLogin() {
-		return this.login;
+	public String getEmail() {
+		return this.email;
 	}
 	public String getSenha() {
 		return senha;
@@ -30,7 +32,13 @@ public class UsuarioForm {
 	}
 	
 	public Usuario converter(EntityManager manager) {
-		Usuario usuario = new Usuario(login, senha, instante);
+		Usuario usuario = new Usuario(email, new SenhaLimpa(senha), instante);
 		return usuario;
 	}
+	@Override
+	public String toString() {
+		return "UsuarioForm [email=" + email + ", senha=" + senha + ", instante=" + instante + "]";
+	}
+	
+	
 }

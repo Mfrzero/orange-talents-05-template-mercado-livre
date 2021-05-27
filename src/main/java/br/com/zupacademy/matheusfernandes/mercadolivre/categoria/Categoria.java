@@ -16,18 +16,35 @@ public class Categoria {
 	@NotBlank
 	private String nome;
 	@ManyToOne
-	private Categoria categoria;
+	private Categoria categoriaMae;
 	
 	@Deprecated
 	public Categoria() {
 	}
 	
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
 
 	public Categoria(@NotBlank String nome) {
 		this.nome = nome;
 	}
+	
+	public void setMae(Categoria categoriaMae) {
+		this.categoriaMae = categoriaMae;
+	}
+
+	//apagar dps apenas teste para listar
+	
+	public Long getId() {
+		return id;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public Categoria getCategoriaMae() {
+		return categoriaMae;
+	}
+	
+	
 
 }
