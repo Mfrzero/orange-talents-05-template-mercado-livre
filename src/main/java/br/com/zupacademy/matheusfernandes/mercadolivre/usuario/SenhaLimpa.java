@@ -7,11 +7,6 @@ import org.hibernate.validator.constraints.Length;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.util.Assert;
 
-/**
- * Representa uma senha limpa no sistema
- * @author albertoluizsouza
- *
- */
 public class SenhaLimpa {
 
 	private String senha;

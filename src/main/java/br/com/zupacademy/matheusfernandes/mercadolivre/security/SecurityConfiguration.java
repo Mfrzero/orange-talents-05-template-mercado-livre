@@ -34,9 +34,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
 
 	@Autowired
 	private TokenManager tokenManager;
-
-	
-
 	
 	@Override
 	@Bean
@@ -48,7 +45,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter  {
 	protected void configure(HttpSecurity http) throws Exception {
 		http
 			.authorizeRequests()
-				.antMatchers("/api/auth/**").permitAll()
+				.antMatchers(HttpMethod.POST,"/api/auth/**").permitAll()
+				.antMatchers(HttpMethod.GET,"/**").permitAll()
 				.anyRequest().authenticated()
 			.and()
 				.cors()
