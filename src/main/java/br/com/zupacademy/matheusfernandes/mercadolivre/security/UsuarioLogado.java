@@ -14,6 +14,7 @@ import br.com.zupacademy.matheusfernandes.mercadolivre.usuario.Usuario;
 
 public class UsuarioLogado implements UserDetails {
 
+	private static final long serialVersionUID = 1L;
 	private Usuario usuario;
 	private User springUserDetails;
 	

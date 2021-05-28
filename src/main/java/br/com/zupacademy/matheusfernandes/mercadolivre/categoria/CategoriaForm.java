@@ -2,10 +2,8 @@ package br.com.zupacademy.matheusfernandes.mercadolivre.categoria;
 
 import javax.persistence.EntityManager;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 
-import br.com.zupacademy.matheusfernandes.mercadolivre.ExistsId;
 import br.com.zupacademy.matheusfernandes.mercadolivre.UniqueValue;
 
 public class CategoriaForm {

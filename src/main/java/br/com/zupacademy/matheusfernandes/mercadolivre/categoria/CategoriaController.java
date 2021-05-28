@@ -50,12 +50,5 @@ public class CategoriaController {
 		}
 		return ResponseEntity.badRequest().build();
 	}
-//	@PostMapping("/api/cadastraCategoria")
-//	@Transactional
-//	public String criaCategoria(@RequestBody @Valid CategoriaForm form){
-//			Categoria categoria = form.converter(manager);
-//			manager.persist(categoria);
-//			return categoria.toString();
-//	}
 	
 }
