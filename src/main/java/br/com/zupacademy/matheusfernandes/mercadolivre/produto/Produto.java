@@ -43,16 +43,13 @@ public class Produto {
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
 	private Set<ImagemProduto> imagens = new HashSet<>();
 
-	
 	@Deprecated
 	public Produto() {
 	}
 
-
 	public Produto(@NotBlank String nome, @Positive int quantidade, @NotBlank @Length(max = 1000) String descricao,
 			@NotNull @Positive BigDecimal valor, @NotNull @Valid Categoria categoria, @NotNull @Valid Usuario dono,
 			@Size(min = 3) @Valid Collection<CaracteristicaForm> caracteristicas) {
-
 		this.nome = nome;
 		this.quantidade = quantidade;
 		this.descricao = descricao;
@@ -65,13 +62,11 @@ public class Produto {
 
 	}
 
-
 	public void associaImagens(Set<String> links) {
 		Set<ImagemProduto> imagens = links.stream().map(link -> new ImagemProduto(this, link))
 				.collect(Collectors.toSet());
 		this.imagens.addAll(imagens);
 	}
-
 
 	@Override
 	public String toString() {
@@ -80,11 +75,12 @@ public class Produto {
 				+ ", caracteristicas=" + caracteristicas + ", imagens=" + imagens + "]";
 	}
 
-
 	public boolean pertenceAoUsuario(Usuario possivelDono) {
 		return this.dono.equals(possivelDono);
 	}
 
-
+	public Usuario getDono() {
+		return this.dono;
+	}
 	
 }
