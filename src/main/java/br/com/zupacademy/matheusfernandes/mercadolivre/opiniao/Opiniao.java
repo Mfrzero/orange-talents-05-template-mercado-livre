@@ -31,6 +31,9 @@ public class Opiniao {
 	@ManyToOne @NotNull @Valid
 	private Usuario consumidor;
 	
+	@Deprecated
+	public Opiniao() {
+	}
 
 	public Opiniao(@Max(5) @Positive Integer nota, @NotNull Titulo titulo, @NotBlank @Size(max = 500) String descricao,
 			@NotNull @Valid Produto produto, @NotNull @Valid Usuario consumidor) {
@@ -40,7 +43,18 @@ public class Opiniao {
 		this.produto = produto;
 		this.consumidor = consumidor;
 	}
+	
+	public Integer getNota() {
+		return nota;
+	}
 
+	public Titulo getTitulo() {
+		return titulo;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
 
 	@Override
 	public String toString() {

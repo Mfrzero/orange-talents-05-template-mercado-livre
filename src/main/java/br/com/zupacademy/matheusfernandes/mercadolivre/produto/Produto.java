@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
@@ -23,6 +24,8 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.Length;
 
 import br.com.zupacademy.matheusfernandes.mercadolivre.categoria.Categoria;
+import br.com.zupacademy.matheusfernandes.mercadolivre.opiniao.Opiniao;
+import br.com.zupacademy.matheusfernandes.mercadolivre.pergunta.Pergunta;
 import br.com.zupacademy.matheusfernandes.mercadolivre.usuario.Usuario;
 import io.jsonwebtoken.lang.Assert;
 
@@ -42,7 +45,11 @@ public class Produto {
 	private Set<CaracteristicaProduto> caracteristicas = new HashSet<>();
 	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
 	private Set<ImagemProduto> imagens = new HashSet<>();
-
+	@OneToMany(mappedBy = "produto")
+	private Set<Pergunta> pergunta = new HashSet<>();
+	@OneToMany(mappedBy = "produto", cascade = CascadeType.MERGE)
+	private Set<Opiniao> opiniao = new HashSet<>();
+	
 	@Deprecated
 	public Produto() {
 	}
@@ -82,5 +89,61 @@ public class Produto {
 	public Usuario getDono() {
 		return this.dono;
 	}
-	
+
+	public String getNome() {
+		return nome;
+	}
+
+	public BigDecimal getValor() {
+		return valor;
+	}
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public Set<CaracteristicaProduto> getCaracteristicas() {
+		return caracteristicas;
+	}
+
+	public <T> Set <T> mapImagens(Function<ImagemProduto, T> funcaoMapeadora) {
+		return this.imagens.stream().map(funcaoMapeadora).collect(Collectors.toSet());
+	}
+	public <T> Set <T> mapPerguntas(Function<Pergunta, T> funcaoMapeadora) {
+		return this.pergunta.stream().map(funcaoMapeadora).collect(Collectors.toSet());
+	}
+
+	public Set<Opiniao> getOpiniao() {
+		return opiniao;
+	}
+
+	public Opinioes getOpinioes() {
+		return new Opinioes(this.opiniao);
+	}
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

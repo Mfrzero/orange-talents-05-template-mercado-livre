@@ -24,10 +24,19 @@ public class Pergunta {
 	@ManyToOne @NotNull @Valid
 	private Produto produto;
 	
+	@Deprecated
+	public Pergunta() {
+	}
+
 	public Pergunta(@NotBlank String titulo, @NotNull @Valid Usuario usuario, @NotNull @Valid Produto produto) {
 		this.titulo = titulo;
 		this.usuario = usuario;
 		this.produto = produto;
+	}
+	
+
+	public String getTitulo() {
+		return titulo;
 	}
 
 	public Usuario getUsuario() {
